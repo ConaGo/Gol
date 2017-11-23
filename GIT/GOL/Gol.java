@@ -88,7 +88,29 @@ public class Gol {
 	    
 	 
 	    public static void main(String[] args) {
-	 
+	    	
+	    	boolean[][] arena = new boolean[ARENASIZE][ARENASIZE];
+	    	
+	    	int x,z;
+	    	if(args.length == 0){
+	    		System.out.println("using Math.random to generate random a random Gamefield");
+	    		for(x = 0;x<ARENASIZE;x++){
+		    		for(z=0;z<ARENASIZE;z++){
+		    			arena[x][z] = ( Math.random()>0.7) ? false : true;
+		    		}
+		    	}
+	    	}
+	    	else{
+	    		System.out.println("using your argument to generate random a random Gamefield");
+	    		double randomSeed = Double.parseDouble(args[0]);
+		    	for( x = 0;x<ARENASIZE;x++){
+		    		for( z=0;z<ARENASIZE;z++){
+		    				randomSeed = (randomSeed*Math.PI/2);
+		    				arena[x][z] = ( randomSeed%10 <7) ? false : true;
+		    		}
+		    	}
+	    	}/*
+	    	}
 	        boolean[][] arena = {{false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false},
 	                            {false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false},
 	                            {false, false, false, true, false, false, true, false,false, false, false, false, false, false, false, false},
@@ -105,7 +127,8 @@ public class Gol {
 	                            {false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false},
 	                            {false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false},
 	                            {false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false}};
-	        for(int x = 0; x < 60; x++){
+	        */
+	        for(int h = 0; h < 60; h++){
 	        consoleOut(arena);
 	        arena = roundCycle(arena);}
 	        
