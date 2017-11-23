@@ -5,13 +5,13 @@ package de.huebner.gol;
  * Conways Game of Life.
  * @version 1.0
  *
- * @author Florian HÃ¼bner {@literal <fl.huebner@ostfalia.de>} Matrikelnr.: 70458541
+ * 
  *
  */
  
 public class Gol {
  
-	 public static final int ARENASIZE = 8;
+	 public static final int ARENASIZE = 16;
 	 
 	    public static boolean[][] roundCycle(boolean[][] arena) {
 	 
@@ -37,34 +37,32 @@ public class Gol {
 	                for (int k = -1 +iBoundaryTop; k < 2 - iBoundaryBot ; k++) {
 	                	
 	                    for (int l = -1 +jBoundaryLeft; l < 2 - jBoundaryRight; l++) {
-	 
-	                        if (arena[i+k][j+l] == true) {
+	                    	
+	                    	if(k == 0 && l == 0){}//nicht die Zelle mitz�hlen um die es geht
+	                    	
+	                    	else if (arena[i+k][j+l] == true) {
 	                            cellCounter++;
 	                            
 	                        }
 	 
 	                    }
-	                }
-	                
-	                
-	                //Hier deine Spiellogik
-	                /*
-	                if (cellCounter < 3) {
-	                                arenaFuture[i][j] = false;
-	                            }
-	                            if (cellCounter == 3 || cellCounter == 4) {
-	                                arenaFuture[i][j] = true;
-	                            }
-	                            if (cellCounter > 4) {
-	                                arenaFuture[i][j] = false;
-	                            }
-	 */
+	                }  
+	               if(arena[i][j]){
+	            	   if(cellCounter<4 && cellCounter > 1)
+	            		   arenaFuture[i][j]=true;
+	            	   else
+	            		   arenaFuture[i][j]=false;
+	               }else
+	            	   if(cellCounter == 3)
+	            		   arenaFuture[i][j]=true;
+	            	   else
+	            		   arenaFuture[i][j]=false;
 	            }
 	        }
 	 
 	        return arenaFuture;
 	 
-	    }
+	    }//45
 	   
 	    public static void consoleOut(boolean[][] arena) {
 	 
@@ -72,8 +70,8 @@ public class Gol {
 	         * Output Arena State to Console.
 	         */
 	 
-	        for (int i = 1; i <= ARENASIZE - 2; i++) {
-	            for (int j = 1; j <= ARENASIZE - 2; j++) {
+	        for (int i = 0; i < ARENASIZE ; i++) {
+	            for (int j = 0; j < ARENASIZE ; j++) {
 	 
 	                if (arena[i][j] == false) {
 	                    System.out.print("O");
@@ -87,29 +85,30 @@ public class Gol {
 	        System.out.println();
 	 
 	    }
+	    
 	 
 	    public static void main(String[] args) {
 	 
-	        boolean[][] arena = {{false, false, false, false, false, false, false, false},
-	                            {false, false, false, false, false, false, false, false},
-	                            {false, false, false, true, false, false, false, false},
-	                            {false, false, false, false, true, false, false, false},
-	                            {false, false, true, true, true, false, false, false},
-	                            {false, false, false, false, false, false, false, false},
-	                            {false, false, false, false, false, false, false, false},
-	                            {false, false, false, false, false, false, false, false}};
-	 
+	        boolean[][] arena = {{false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false},
+	                            {false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false},
+	                            {false, false, false, true, false, false, true, false,false, false, false, false, false, false, false, false},
+	                            {false, false, true, false, true, true, false, true,false, false, false, false, false, false, false, false},
+	                            {false, false, false, true, false, false, true, false,false, false, false, false, false, false, false, false},
+	                            {false, false, false, true, false, false, true, false,false, false, false, false, false, false, false, false},
+	                            {false, false, true, false, true, true, false, true,false, false, false, false, false, false, false, false},
+	                            {false, false, false, true, false, false, true, false,false, false, false, false, false, false, false, false},
+	                            {false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false},
+	                            {false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false},
+	                            {false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false},
+	                            {false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false},
+	                            {false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false},
+	                            {false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false},
+	                            {false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false},
+	                            {false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false}};
+	        for(int x = 0; x < 60; x++){
 	        consoleOut(arena);
-	        arena = roundCycle(arena);
-	        consoleOut(arena);
-	        arena = roundCycle(arena);
-	        consoleOut(arena);
-	        arena = roundCycle(arena);
-	        consoleOut(arena);
-	        arena = roundCycle(arena);
-	        consoleOut(arena);
-	        arena = roundCycle(arena);
-	        consoleOut(arena);
+	        arena = roundCycle(arena);}
+	        
 	 
 	    }
 	 
